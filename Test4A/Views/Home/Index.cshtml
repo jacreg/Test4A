@@ -1,0 +1,59 @@
+﻿@using Test4A.Models 
+@model dynamic
+
+@{
+    ViewData["Title"] = "The Star Wars films";
+}
+
+<div class="text-center">
+    <h1 class="display-4">The Star Wars films</h1>
+    <div>
+            @foreach (var film in Model.list)
+            {
+                <div><a asp-route-id="@film.index">@film.episode_id - @film.title</a></div>
+            }
+    </div>
+    <div> Please click on the above link for more details</div>
+    <div>
+        @if (Model.film != null)
+        {
+            var film = Model.film;
+            <hr />
+            <div>Episode:</div>
+            <div><b>@film.episode_id</b></div>
+            <div>Title:</div>
+            <div><b>@film.title</b></div>
+            <div>Director:</div>
+            <div><b>@film.director</b></div>
+            <div>Producer:</div>
+            <div><b>@film.producer</b></div>
+            <div>Released:</div>
+            <div><b>@film.release_date</b></div>
+            <div>&nbsp;</div>
+            <div><i>@film.opening_crawl</i></div>
+            <hr />
+            <div>Overall score:</div>
+            <div><b>@film.score.score</b></div>
+            <div>&nbsp;</div>
+            <div>Please click below button to vote:</div>
+            <div>
+                <a asp-route-id="@film.index" asp-route-score="0"><button>0</button></a>
+                <a asp-route-id="@film.index" asp-route-score="1"><button>1</button></a>
+                <a asp-route-id="@film.index" asp-route-score="2"><button>2</button></a>
+                <a asp-route-id="@film.index" asp-route-score="3"><button>3</button></a>
+                <a asp-route-id="@film.index" asp-route-score="4"><button>4</button></a>
+                <a asp-route-id="@film.index" asp-route-score="5"><button>5</button></a>
+                <a asp-route-id="@film.index" asp-route-score="6"><button>6</button></a>
+                <a asp-route-id="@film.index" asp-route-score="7"><button>7</button></a>
+                <a asp-route-id="@film.index" asp-route-score="8"><button>8</button></a>
+                <a asp-route-id="@film.index" asp-route-score="9"><button>9</button></a>
+                <a asp-route-id="@film.index" asp-route-score="10"><button>10</button></a>
+            </div>
+            <div>&nbsp;</div>
+            @if (Model.voted)
+                {
+                <div>Thank you for your vote!</div>
+                }
+        }
+     </div>
+</div>
